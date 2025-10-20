@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Happy Diwali</title>
+  <style>
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) translateX(0);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-120vh) translateX(20px);
+        opacity: 0;
+      }
+    }
+
+    body {
+      margin: 0;
+      height: 100vh;
+      overflow: hidden;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #FFD700;
+      position: relative;
+      padding: 20px;
+
+      background: #000000; /* pure black background */
+    }
+
+    /* Big faint diya in background */
+    body::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 350px;
+      height: 350px;
+      background: url('https://upload.wikimedia.org/wikipedia/commons/7/7e/Diya.svg') no-repeat center center;
+      background-size: contain;
+      opacity: 0.1;
+      transform: translate(-50%, -50%);
+      filter: drop-shadow(0 0 15px #ffb347);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Floating glowing particles */
+    .particle {
+      position: absolute;
+      bottom: -20px;
+      background: radial-gradient(circle, rgba(255,255,224,0.9) 0%, rgba(255,165,0,0) 70%);
+      border-radius: 50%;
+      opacity: 0.8;
+      animation: floatUp linear infinite;
+      filter: drop-shadow(0 0 4px #ffda75);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Different sizes and animation durations */
+    .particle:nth-child(1) {
+      width: 10px; height: 10px;
+      left: 20%;
+      animation-duration: 8s;
+      animation-delay: 0s;
+    }
+    .particle:nth-child(2) {
+      width: 15px; height: 15px;
+      left: 50%;
+      animation-duration: 12s;
+      animation-delay: 2s;
+    }
+    .particle:nth-child(3) {
+      width: 8px; height: 8px;
+      left: 70%;
+      animation-duration: 10s;
+      animation-delay: 4s;
+    }
+    .particle:nth-child(4) {
+      width: 12px; height: 12px;
+      left: 30%;
+      animation-duration: 14s;
+      animation-delay: 1s;
+    }
+    .particle:nth-child(5) {
+      width: 9px; height: 9px;
+      left: 80%;
+      animation-duration: 9s;
+      animation-delay: 3s;
+    }
+
+    .container {
+      text-align: center;
+      max-width: 400px;
+      z-index: 1;
+      position: relative;
+    }
+
+    .countdown {
+      font-size: 6rem;
+      margin-bottom: 2rem;
+      text-shadow:
+        0 0 10px #FFD700,
+        0 0 25px #FFA500;
+    }
+
+    .message {
+      display: none;
+      font-size: 1.8rem;
+      text-shadow:
+        0 0 7px #FFD700,
+        0 0 15px #FFA500;
+      font-weight: 600;
+      line-height: 1.4;
+    }
+
+    .lamp {
+      width: 130px;
+      margin: 1.5rem auto 0;
+      filter: drop-shadow(0 0 10px #FFB347);
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <!-- Floating particles -->
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+
+  <div class="container">
+    <div class="countdown" id="countdown">3</div>
+    <div class="message" id="message">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Diya_lamp.svg/120px-Diya_lamp.svg.png" alt="Lamp" class="lamp" />
+      <p>Wishing you a very <strong>Happy Diwali</strong></p>
+      <p>Cute with Love</p>
+      <p><em>Pratik</em></p>
+    </div>
+  </div>
+
+  <script>
+    let count = 3;
+    const countdownEl = document.getElementById('countdown');
+    const messageEl = document.getElementById('message');
+
+    const interval = setInterval(() => {
+      count--;
+      if (count > 0) {
+        countdownEl.textContent = count;
+      } else {
+        clearInterval(interval);
+        countdownEl.style.display = 'none';
+        messageEl.style.display = 'block';
+      }
+    }, 1000);
+  </script>
+</body>
+</html>
